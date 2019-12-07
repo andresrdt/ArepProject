@@ -5,10 +5,13 @@
  */
 package edu.eci.arep.arepproyecto.persistencia;
 
+import edu.eci.arep.arepproyecto.model.empresa;
+import java.util.ArrayList;
+
 /**
  *
  * @author Andres
  */
 public interface empresaIMP {
-    
+    public ArrayList<empresa> getAllEmpresas() throws empresasPersistenceException;
 }

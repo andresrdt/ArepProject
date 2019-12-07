@@ -5,6 +5,8 @@
  */
 package edu.eci.arep.arepproyecto.controller;
 import edu.eci.arep.arepproyecto.model.empresa;
+import edu.eci.arep.arepproyecto.persistencia.empresasPersistenceException;
+import edu.eci.arep.arepproyecto.services.empresaServices;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +21,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Andres
  */
 @RestController
-@RequestMapping(value = "/date")
+@RequestMapping(value = "/datos")
 public class empresasController {
-    /*@Autowired
-    AirportsFinderServices afs=null;
-    @RequestMapping(path ="/{city}",method = RequestMethod.GET)
-    public ResponseEntity<?> GetAirportByName(@PathVariable ("city") String name){
+    @Autowired
+    empresaServices es =null;
+    
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> GetAllEmpresas(){
         try {
-            
-            return new ResponseEntity<>(afs.OpenConnection(name),HttpStatus.ACCEPTED);
-        } catch (Exception e) {
-            Logger.getLogger(AirportsFinderController.class.getName()).log(Level.SEVERE, null, e);
+            return new ResponseEntity<>(es.getEmpresas(),HttpStatus.ACCEPTED);
+        } catch (empresasPersistenceException e) {
+            Logger.getLogger(empresasController.class.getName()).log(Level.SEVERE, null, e);
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
-    }*/
+    }
 }
