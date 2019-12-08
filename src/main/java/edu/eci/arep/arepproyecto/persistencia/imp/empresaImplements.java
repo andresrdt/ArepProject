@@ -10,6 +10,7 @@ import edu.eci.arep.arepproyecto.persistencia.empresaIMP;
 import edu.eci.arep.arepproyecto.persistencia.empresasPersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -110,14 +111,19 @@ public class empresaImplements implements empresaIMP {
 
     @Override
     public void AddEmpresa(String empresa,String service,String url) {
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         ArrayList<empresa> lista = new ArrayList<>();
         try{
             Class.forName("org.postgresql.Driver");
-            c.setAutoCommit(false);
-            stmt = c.createStatement();
-            String sql = "insert into empresas(name,service,url) values('"+empresa+"','"+service+"','"+url+"');";
-            stmt.executeQuery(sql);
+            stmt=c.prepareStatement("INSERT INTO empresas VALUES (?,?,?)");
+            stmt.setString(1,empresa);
+            stmt.setString(2,service);
+            stmt.setString(3,url);
+            stmt.executeUpdate();
+            //stmt = c.createStatement();
+            //String sql = "insert into empresas(name,service,url) values('"+empresa+"','"+service+"','"+url+"');";
+            //System.out.println("llegue aqui ");
+            //stmt.executeQuery(sql);
             //System.out.println(sql);
             stmt.close();
             //System.out.println(lista.get(1).getName());
