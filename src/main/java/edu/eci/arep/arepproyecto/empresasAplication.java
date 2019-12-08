@@ -9,14 +9,24 @@ package edu.eci.arep.arepproyecto;
  *
  * @author Andres
  */
+import edu.eci.arep.arepproyecto.persistencia.empresasPersistenceException;
+import edu.eci.arep.arepproyecto.persistencia.imp.empresaImplements;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class empresasAplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(empresasAplication.class, args);
-	}
+    public static void main(String[] args) {
+        //SpringApplication.run(empresasAplication.class, args);
+        empresaImplements rul = new empresaImplements();
+        try {
+            rul.realizaConexion();
+        } catch (empresasPersistenceException ex) {
+            Logger.getLogger(empresasAplication.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }
