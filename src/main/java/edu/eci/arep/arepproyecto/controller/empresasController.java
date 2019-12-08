@@ -35,4 +35,9 @@ public class empresasController {
             return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
         }
     }
+    
+    @RequestMapping(method = RequestMethod.GET, path ="/{service}")
+    public ResponseEntity<?> GetEmpresasByService(@PathVariable String service ){
+        return new ResponseEntity<>(es.getEmpresasPorServicio(service),HttpStatus.ACCEPTED);
+    }
 }

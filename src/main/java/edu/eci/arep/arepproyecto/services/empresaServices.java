@@ -8,6 +8,7 @@ package edu.eci.arep.arepproyecto.services;
 import edu.eci.arep.arepproyecto.model.empresa;
 import edu.eci.arep.arepproyecto.persistencia.empresaIMP;
 import edu.eci.arep.arepproyecto.persistencia.empresasPersistenceException;
+import edu.eci.arep.arepproyecto.persistencia.imp.empresaImplements;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +21,15 @@ import org.springframework.stereotype.Service;
 public class empresaServices {
     
     @Autowired
-    empresaIMP ep=null;
+    empresaImplements ep=null;
     
      public ArrayList<empresa> getEmpresas() throws empresasPersistenceException{
          return ep.getAllEmpresas();
      }
+     
+     public ArrayList<empresa> getEmpresasPorServicio( String service){
+         return ep.getEmpresasPorServicio(service);
+     }
+     
+     
 }

@@ -14,6 +14,14 @@ public class empresa {
     private String service;
     private String url;
 
+    public empresa(String name, String service, String url) {
+        this.name = name;
+        this.service = service;
+        this.url = url;
+    }
+
+        
+    
     public void setName(String name) {
         this.name = name;
     }

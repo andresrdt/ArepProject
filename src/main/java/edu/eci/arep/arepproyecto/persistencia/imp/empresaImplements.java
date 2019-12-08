@@ -10,8 +10,12 @@ import edu.eci.arep.arepproyecto.persistencia.empresaIMP;
 import edu.eci.arep.arepproyecto.persistencia.empresasPersistenceException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,12 +31,45 @@ public class empresaImplements implements empresaIMP {
     static Connection c = null;
 
     public empresaImplements() {
-        
+        try {
+            realizaConexion();
+        } catch (empresasPersistenceException ex) {
+            Logger.getLogger(empresaImplements.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public ArrayList<empresa> getAllEmpresas() throws empresasPersistenceException{
         return list;
+    }
+    
+    public ArrayList<empresa> getEmpresasPorServicio( String servicio ){
+        Statement stmt = null;
+        ArrayList<empresa> lista = new ArrayList<>();
+        try{
+            Class.forName("org.postgresql.Driver");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "Select * from empresas where service ='"+servicio+"';";
+            //System.out.println(sql);
+            String rsl = null;
+            ResultSet rs = stmt.executeQuery(sql);
+            empresa u = null;
+            while (rs.next()) {
+                 u = new empresa(rs.getString("name"),rs.getString("service"), rs.getString("url"));
+                 lista.add(u);
+            }
+            rs.close();
+            stmt.close();
+            //System.out.println(lista.get(1).getName());
+            return lista;
+            
+        }catch(Exception e){
+            System.out.println("Ocurrio un error obteniendo la empresa : "+e.getMessage());
+        }
+
+        return null;
+
     }
     
     public void realizaConexion() throws empresasPersistenceException{
@@ -46,6 +83,7 @@ public class empresaImplements implements empresaIMP {
             System.out.println("Ocurrio un error : "+e.getMessage());
         }        
     }
+    
     
     
 }

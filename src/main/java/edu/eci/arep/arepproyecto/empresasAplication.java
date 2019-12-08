@@ -20,13 +20,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class empresasAplication {
 
     public static void main(String[] args) {
-        //SpringApplication.run(empresasAplication.class, args);
-        empresaImplements rul = new empresaImplements();
-        try {
-            rul.realizaConexion();
-        } catch (empresasPersistenceException ex) {
-            Logger.getLogger(empresasAplication.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SpringApplication.run(empresasAplication.class, args);
+        
     }
 
 }
