@@ -30,6 +30,9 @@ public class empresaServices {
      public ArrayList<empresa> getEmpresasPorServicio( String service){
          return ep.getEmpresasPorServicio(service);
      }
+     public void addNewEmpresa(String empresa,String service,String url){
+         ep.AddEmpresa(empresa, service, url);
+     }
      
      
 }

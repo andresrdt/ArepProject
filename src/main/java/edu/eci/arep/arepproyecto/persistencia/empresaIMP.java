@@ -14,4 +14,5 @@ import java.util.ArrayList;
  */
 public interface empresaIMP {
     public ArrayList<empresa> getAllEmpresas() throws empresasPersistenceException;
+    public void AddEmpresa(String empresa,String service,String url);
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +27,7 @@ public class empresasController {
     @Autowired
     empresaServices es =null;
     
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET, path ="/empresas")
     public ResponseEntity<?> GetAllEmpresas(){
         try {
             return new ResponseEntity<>(es.getEmpresas(),HttpStatus.ACCEPTED);
@@ -39,5 +40,16 @@ public class empresasController {
     @RequestMapping(method = RequestMethod.GET, path ="/{service}")
     public ResponseEntity<?> GetEmpresasByService(@PathVariable String service ){
         return new ResponseEntity<>(es.getEmpresasPorServicio(service),HttpStatus.ACCEPTED);
+    }
+     @RequestMapping(path = "/{name}/{service}/{url}",method = RequestMethod.POST)	
+    public ResponseEntity<?> PostEmpresa(@PathVariable ("name") String name, @PathVariable ("service") String service,@PathVariable ("url") String url){
+        
+        try {
+            es.addNewEmpresa(name, service, url);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (Exception ex) {
+            Logger.getLogger(empresasController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>(ex.getMessage(),HttpStatus.FORBIDDEN);
+        }
     }
 }

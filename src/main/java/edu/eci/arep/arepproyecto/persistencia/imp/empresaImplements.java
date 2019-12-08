@@ -40,7 +40,31 @@ public class empresaImplements implements empresaIMP {
 
     @Override
     public ArrayList<empresa> getAllEmpresas() throws empresasPersistenceException{
-        return list;
+        Statement stmt = null;
+        ArrayList<empresa> lista = new ArrayList<>();
+         try{
+            Class.forName("org.postgresql.Driver");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "Select * from empresas;";
+            //System.out.println(sql);
+            String rsl = null;
+            ResultSet rs = stmt.executeQuery(sql);
+            empresa u = null;
+            while (rs.next()) {
+                 u = new empresa(rs.getString("name"),rs.getString("service"), rs.getString("url"));
+                 lista.add(u);
+            }
+            rs.close();
+            stmt.close();
+            //System.out.println(lista.get(1).getName());
+            list=lista;
+            return lista;
+            
+        }catch(Exception e){
+            System.out.println("Ocurrio un error obteniendo la empresa : "+e.getMessage());
+        }
+         return null;
     }
     
     public ArrayList<empresa> getEmpresasPorServicio( String servicio ){
@@ -82,6 +106,27 @@ public class empresaImplements implements empresaIMP {
         } catch (SQLException e) {
             System.out.println("Ocurrio un error : "+e.getMessage());
         }        
+    }
+
+    @Override
+    public void AddEmpresa(String empresa,String service,String url) {
+        Statement stmt = null;
+        ArrayList<empresa> lista = new ArrayList<>();
+        try{
+            Class.forName("org.postgresql.Driver");
+            c.setAutoCommit(false);
+            stmt = c.createStatement();
+            String sql = "insert into empresas(name,service,url) values('"+empresa+"','"+service+"','"+url+"');";
+            stmt.executeQuery(sql);
+            //System.out.println(sql);
+            stmt.close();
+            //System.out.println(lista.get(1).getName());
+            
+        }catch(Exception e){
+            System.out.println("Ocurrio un error obteniendo la empresa : "+e.getMessage());
+        }
+
+        
     }
     
     
