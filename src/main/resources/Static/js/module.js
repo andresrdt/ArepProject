@@ -35,7 +35,7 @@ var modulo = (function () {
 
         getPromise.then(
                 function (data) {
-                    alert(data.length)
+                    
                     getPromise = data.length;
                     datosEmp[3]=data.length;
                     datos();
