@@ -10,11 +10,11 @@ Al momento de montar su propia empresa, es importante planear y organizar su fun
 Para enfocarnos más en un mercado local decidimos realizar una investigación de diferentes empresas, específicamente empresas consultoras que brindan servicios de asesorias y soluciones TI en Colombia, además de algunas peculiaridades de estas como en qué plataforma están montados sus servicios, sus ingresos promedio e información peculiar de cada una de estas.
 Decidimos realizar una aplicación que ayude a graficar los datos obtenidos en la investigación, tales como los servicios web en los cuales están ubicadas las páginas de las empresas antes mencionadas,  de esta forma buscamos facilitar la representación del estado actual del mercado y brindar soluciones a las consultoras pequeñas para que puedan aspirar a tener un crecimiento sostenible. 
 ## arquitectura de la aplicación
-## diagrama de  despliegue
+## Diagrama de  despliegue
 
 ![](screens/Despliegue.PNG)
 
-## diagrama de componentes
+## Diagrama de componentes
 
 ![](screens/Componentes.PNG)
 
