@@ -5,15 +5,22 @@
  */
 
 var modulo = (function () {
-    var datosEmp = [2, 1, 2, 3];
+    var datosEmp = [0,0,0,0];
     var getEmpresasByService = function (servicio) {
-        alert(servicio);
         var getPromise = $.get("/datos/" + servicio);
 
         getPromise.then(
                 function (data) {
-                    alert(data.length)
-
+                    
+                    if (servicio === "AWS"){
+                        datosEmp[0]=data.length
+                    }
+                    else if (servicio === "Microsoft AZURE"){
+                        datosEmp[2]=data.length
+                    }
+                    else if (servicio === "GOOGLE CLOUD PLATAFORM"){
+                        datosEmp[1]=data.length
+                    }
                 },
                 function () {
                     console.log('get failed');
@@ -29,7 +36,9 @@ var modulo = (function () {
         getPromise.then(
                 function (data) {
                     alert(data.length)
-
+                    getPromise = data.length;
+                    datosEmp[3]=data.length;
+                    datos();
                 },
                 function () {
                     console.log('get failed');
@@ -38,20 +47,22 @@ var modulo = (function () {
 
         return getPromise;
     };
+    
     var lleneDatos = function () {
+        
         var aws = getEmpresasByService("AWS");
         var azure = getEmpresasByService("Microsoft AZURE");
         var google = getEmpresasByService("GOOGLE CLOUD PLATAFORM");
         var otros = getEmpresas();
-        alert(otros.size);
-        datos();
+        
         //datosEmp.push();
     }
     var datos = function () {
         var densityCanvas = document.getElementById("densityChart");
         Chart.defaults.global.defaultFontFamily = "Lato";
         Chart.defaults.global.defaultFontSize = 18;
-
+        
+        datosEmp.push(0);
         var densityData = {
             label: 'Cantidad de empresas',
             data: datosEmp,
@@ -76,6 +87,6 @@ var modulo = (function () {
     }
 
     return {
-        cargueDatos: lleneDatos
+        cargarDatos:lleneDatos
     };
-})
+})();
