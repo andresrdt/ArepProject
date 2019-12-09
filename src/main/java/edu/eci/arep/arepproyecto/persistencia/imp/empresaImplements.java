@@ -47,7 +47,7 @@ public class empresaImplements implements empresaIMP {
             Class.forName("org.postgresql.Driver");
             c.setAutoCommit(false);
             stmt = c.createStatement();
-            String sql = "Select * from empresas;";
+            String sql = "select * from empresas where empresas.service!='AWS' and empresas.service!='Microsoft AZURE' and empresas.service!='GOOGLE CLOUD PLATAFORM';";
             //System.out.println(sql);
             String rsl = null;
             ResultSet rs = stmt.executeQuery(sql);
