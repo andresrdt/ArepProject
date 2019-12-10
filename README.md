@@ -19,4 +19,6 @@ Decidimos realizar una aplicación que ayude a graficar los datos obtenidos en l
 
 ![](screens/Componentes.PNG)
 
+Para mas informacion:
 
+https://docs.google.com/document/d/19yWL0Y4mczMCr8Tw525SS96K2GzYPwd3zt2jSSi2TKE/edit?usp=sharing
