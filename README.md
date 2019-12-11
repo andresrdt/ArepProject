@@ -2,7 +2,7 @@
 ## Integrantes 🔧
 * Daniel Felipe Rodriguez Villalba
 * Andrés Rodríguez del toro 
-## link proyecto
+## Link proyecto
 http://52.234.134.249:8080/
 ## Crecimiento de empresas colombianas de consultoría en Colombia
 ## Descripción general
